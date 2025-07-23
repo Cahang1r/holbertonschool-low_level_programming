@@ -3,7 +3,8 @@
 #include <time.h>
 
 /**
- * main - Generates a random number and checks if it is positive, negative, or zero
+ * main - Generates a random number and checks if it is positive,
+ *        negative, or zero
  *
  * Return: 0 if the program runs successfully
  */
