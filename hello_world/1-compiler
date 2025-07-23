@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+/**
+ * main - compiles a C file to an object file without linking
+ *
+ * Return: 0 on success, 1 on failure
+ */
+int main(void)
+{
+    char *cfile, *outfile;
+    char *args[11];
+    int status;
+    pid_t pid;
+
+    cfile = getenv("CFILE");
+    if (cfile == NULL)
+    {
+        fprintf(stderr, "Error: CFILE not set\n");
+        return (1);
+    }
+
+    if (strlen(cfile) < 3 || strcmp(cfile + strlen(cfile) - 2, ".c") != 0)
+    {
+        fprintf(stderr, "Error: CFILE must be a .c file\n");
+        return (1);
+    }
+
+    /* create output filename replacing .c with .o */
+    outfile = malloc(strlen(cfile) + 1);
+    if (!outfile)
+    {
+        perror("malloc");
+        return (1);
+    }
+    strcpy(outfile, cfile);
+    outfile[strlen(outfile) - 1] = 'o'; /* replace 'c' with 'o' */
+
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("fork");
+        free(outfile);
+        return (1);
+    }
+    if (pid == 0) /* child process */
+    {
+        args[0] = "gcc";
+        args[1] = "-Wall";
+        args[2] = "-Werror";
+        args[3] = "-Wextra";
+        args[4] = "-pedantic";
+        args[5] = "-std=gnu89";
+        args[6] = "-c";
+        args[7] = cfile;
+        args[8] = "-o";
+        args[9] = outfile;
+        args[10] = NULL;
+
+        execve("/usr/bin/gcc", args, NULL);
+        perror("execve");
+        free(outfile);
+        exit(1);
+    }
+    else /* parent */
+    {
+        waitpid(pid, &status, 0);
+        free(outfile);
+        if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
+            return (0);
+        else
+        {
+            fprintf(stderr, "Compilation failed\n");
+            return (1);
+        }
+    }
+}
