@@ -1,18 +1,23 @@
 #include "main.h"
 
 /**
- * _isalpha - checks for alphabetic character
- * @c: the character to check (ASCII value)
+ * print_sign - prints the sign of a number
+ * @n: The number to check
  *
- * Return: 1 if letter (lowercase or uppercase), 0 otherwise
+ * Return: 1 if positive, 0 if zero, -1 if negative
  */
 int print_sign(int n)
 {
-    if (n>0)
-        return 1;
-    else if (n==0)
-        return 0;
-    else
-        return -1;
-    
+	if (n > 0)
+	{
+		return (1);
+	}
+	else if (n == 0)
+	{
+		return (0);
+	}
+	else
+	{
+		return (-1);
+	}
 }
