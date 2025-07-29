@@ -14,5 +14,5 @@ void more_numbers(void)
 
 			_putchar((j % 10) + '0');       /* print units digit */
     }
-    _putchar('\n')
+    _putchar('\n');
 }
