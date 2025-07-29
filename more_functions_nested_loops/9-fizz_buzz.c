@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -18,11 +19,13 @@
         else if (n % 3 ==0)
             printf("Fizz");
         else if (n % 5 ==0)
-            printf("Buzz")
+            printf("Buzz");
         else
-            printf("%d",n)
+            printf("%d",n);
 
         if (n < 100)
-            printf(" ")
+            printf(" ");
     }
+    printf("\n");
+    return (0);
  }
