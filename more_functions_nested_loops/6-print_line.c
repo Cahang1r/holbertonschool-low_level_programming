@@ -1,26 +1,23 @@
 #include "main.h"
 
 /**
- * print_diagonal - draws a diagonal line on the terminal
- * @n: number of times to print '\'
+ * print_line - draws a straight line using '_' characters
+ * @n: number of times to print '_'
  */
-void print_diagonal(int n)
+void print_line(int n)
 {
-	int i, j;
+	int i;
 
 	if (n <= 0)
 	{
 		_putchar('\n');
-		return;
 	}
-
-	for (i = 0; i < n; i++)
+	else
 	{
-		/* print spaces before the backslash */
-		for (j = 0; j < i; j++)
-			_putchar(' ');
-
-		_putchar('\\');
+		for (i = 0; i < n; i++)
+		{
+			_putchar('_');
+		}
 		_putchar('\n');
 	}
 }
