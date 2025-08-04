@@ -12,13 +12,11 @@ char *_strcat(char *dest, char *src)
 	int i = 0;
 	int j = 0;
 
-	/* Find the end of dest string */
 	while (dest[i] != '\0')
 	{
 		i++;
 	}
 
-	/* Copy src to dest starting at the end */
 	while (src[j] != '\0')
 	{
 		dest[i] = src[j];
@@ -26,7 +24,6 @@ char *_strcat(char *dest, char *src)
 		j++;
 	}
 
-	/* Add null terminator at the end */
 	dest[i] = '\0';
 
 	return (dest);
