@@ -1,6 +1,6 @@
 #include "dog.h"
-#include <stdio.h>    // for printf
-#include <stddef.h>   // for NULL
+#include <stdio.h>    
+#include <stddef.h>   
 
 /**
  * print_dog - prints a struct dog
