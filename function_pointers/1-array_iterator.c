@@ -1,4 +1,4 @@
-#include <stddef.h>  // for size_t
+#include <stddef.h>  
 #include "function_pointers.h"
 
 /**
