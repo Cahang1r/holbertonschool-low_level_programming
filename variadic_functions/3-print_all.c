@@ -5,7 +5,11 @@
  * print_all - Prints anything, followed by a new line.
  * @format: A string of format specifiers.
  *
- * Return: Nothing.
+ * Description: Valid format specifiers are:
+ *  'c' - char
+ *  'i' - integer
+ *  'f' - float
+ *  's' - string (prints (nil) if NULL)
  */
 void print_all(const char * const format, ...)
 {
@@ -18,38 +22,32 @@ void print_all(const char * const format, ...)
 
 	while (format && format[i])
 	{
-		if (
-			format[i] == 'c' ||
-			format[i] == 'i' ||
-			format[i] == 'f' ||
-			format[i] == 's'
-		)
+		if (format[i] == 'c' || format[i] == 'i' ||
+		    format[i] == 'f' || format[i] == 's')
 		{
 			printf("%s", sep);
-
 			switch (format[i])
 			{
-				case 'c':
-					printf("%c", va_arg(args, int));
-					break;
-				case 'i':
-					printf("%d", va_arg(args, int));
-					break;
-				case 'f':
-					printf("%f", va_arg(args, double));
-					break;
-				case 's':
-					str = va_arg(args, char *);
-					if (str == NULL)
-						str = "(nil)";
-					printf("%s", str);
-					break;
+			case 'c':
+				printf("%c", va_arg(args, int));
+				break;
+			case 'i':
+				printf("%d", va_arg(args, int));
+				break;
+			case 'f':
+				printf("%f", va_arg(args, double));
+				break;
+			case 's':
+				str = va_arg(args, char *);
+				if (str == NULL)
+					str = "(nil)";
+				printf("%s", str);
+				break;
 			}
 			sep = ", ";
 		}
 		i++;
 	}
-
 	va_end(args);
 	printf("\n");
 }
